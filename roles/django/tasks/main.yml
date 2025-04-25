@@ -21,7 +21,6 @@
   vars:
     docker_users:
       - "{{ django_user_name }}"
-      - "{{ postgres_user_name }}"
 
 - name: Deploy django project
   become: yes
