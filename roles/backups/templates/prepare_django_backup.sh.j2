@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -e
+
+echo "Perform database dump from inside the docker container for postgresql"
+docker exec postgres pg_dump -U "{{ db_name }}" --encoding=UTF8 "{{ db_name }}" > "{{ backups_role_tmp_path }}/pg_dump_{{ db_name }}.sql"
+echo "…done"

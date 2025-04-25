@@ -1,0 +1,30 @@
+---
+system_administrators:
+  - name: cesar
+    ssh_key: "{{ inventory_dir }}/../pub_keys/cesar.pub"
+    state: present
+  - name: daniel
+    ssh_key: "{{ inventory_dir }}/../pub_keys/daniel.pub"
+    state: present
+  - name: kon
+    ssh_key: "{{ inventory_dir }}/../pub_keys/kon.pub"
+    state: present
+  - name: jordi
+    ssh_key: "{{ inventory_dir }}/../pub_keys/jordi.pub"
+    state: present
+
+developers: []
+
+# Let's Encrypt conf
+certificate_authority_email: sysadmin@coopdevs.org
+
+# Set 'development_environment' to "true" to skip SSL and nginx tasks
+development_environment: False
+
+# Disable backups
+backups_role_enabled: False
+
+postgresql_python_library: python3-psycopg2
+
+security_enabled: False
+firewall_enabled: False

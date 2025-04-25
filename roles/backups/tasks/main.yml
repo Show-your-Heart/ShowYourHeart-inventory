@@ -1,0 +1,19 @@
+---
+- name: backups
+  include_role:
+    name: coopdevs.backups_role
+  vars:
+    backups_role_user_groups: "docker"
+    backups_role_script_prepare_template: "prepare_django_backup.sh.j2"
+    backups_role_assets_paths:
+      - "{{ backups_role_tmp_path }}/pg_dump_{{ db_name }}.sql"
+    # Total kept snapshots:
+    # with last=4, daily=3, weekly=4, monthly=4, and daily automatic backups:
+    # - `last` only takes effect if more than one snapshot is taken in a day, that is, manualy.
+    # - `daily` will keep 3 daily snapshots
+    # - `weekly` will keep 3 extra snapshots, last Sundays.
+    # - `monthly` will keep 3 extra snapshots, last day of month 28-31.
+    backups_role_keep_last: 4
+    backups_role_keep_daily: 3
+    backups_role_keep_weekly: 4
+    backups_role_keep_monthly: 4

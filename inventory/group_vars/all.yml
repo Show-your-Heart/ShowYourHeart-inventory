@@ -1,0 +1,43 @@
+---
+# Use python3 interpreter
+ansible_python_interpreter: "/usr/bin/python3"
+
+# Django OS configuration
+django_user_name: django
+django_group_name: django
+django_user_home_dir: "/home/{{ django_user_name }}/"
+
+# Nginx configuration
+nginx_configs:
+  upstream:
+    - upstream django { server 127.0.0.1:1601; }
+
+nginx_sites:
+  Django:
+    - |
+      listen 80;
+      server_name {{ domains | default([inventory_hostname]) | join(' ') }};
+      rewrite ^(.*)$ https://$host$1 permanent;
+  django.ssl:
+    - |
+      listen 443 ssl;
+      ssl_certificate /etc/letsencrypt/live/{{ inventory_hostname }}/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/{{ inventory_hostname }}/privkey.pem;
+      include /etc/letsencrypt/options-ssl-nginx.conf;
+      ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+      server_name {{ domains | default([inventory_hostname]) | join(' ') }};
+      proxy_read_timeout 180000s;
+      proxy_connect_timeout 180000s;
+      proxy_send_timeout 180000s;
+      proxy_set_header X-Forwarded-Host $host;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
+      proxy_set_header X-Real-IP $remote_addr;
+      access_log /var/log/nginx/django.access.log;
+      error_log /var/log/nginx/django.error.log;
+      location / {
+        proxy_redirect off;
+        proxy_pass http://django;
+      }
+      gzip_types text/css text/less text/plain text/xml application/xml application/json application/javascript;
+      gzip on;

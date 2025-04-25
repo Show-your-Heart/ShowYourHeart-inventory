@@ -1,0 +1,6 @@
+# Vars to use in lxc-create
+NAME="django"
+DISTRIBUTION="ubuntu"
+RELEASE="jammy"
+ARCH="amd64"
+HOST="$NAME.local"

@@ -1,0 +1,25 @@
+---
+roles:
+  - src: coopdevs.sys-admins-role
+    version: v0.0.3
+
+  - src: geerlingguy.security
+    version: 3.0.0
+
+  - src: coopdevs.monitoring_role
+    version: v0.6.0
+
+  - src: coopdevs.backups_role
+    version: v1.2.14
+
+  - src: coopdevs.certbot_nginx
+    version: v0.3.2
+
+  - src: jdauphant.nginx
+    version: v2.21.2
+
+  - src: geerlingguy.firewall
+    version: 2.6.0
+
+  - src: geerlingguy.docker
+    version: 7.4.7

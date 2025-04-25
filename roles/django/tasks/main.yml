@@ -1,0 +1,54 @@
+---
+- name: Install dependency packages
+  become: yes
+  apt:
+    pkg:
+      - gpg
+
+# Adding this user to docker group can have security issues when docker
+# manages other containers too, but it's better than running docker from root.
+- name: User to execute the manage docker on behalf of Django
+  become: yes
+  user:
+    name: "{{ django_user_name }}"
+    state: present
+    shell: /bin/bash
+    home: "{{ django_user_home_dir }}"
+
+- name: Install docker
+  include_role:
+    name: geerlingguy.docker
+  vars:
+    docker_users:
+      - "{{ django_user_name }}"
+      - "{{ postgres_user_name }}"
+
+- name: Deploy django project
+  become: yes
+  become_user: "{{ django_user_name }}"
+  ansible.builtin.git:
+    repo: 'https://github.com/Show-your-Heart/ShowYourHeart.git'
+    dest: "{{ django_user_home_dir }}ShowYourHeart"
+    version: "{{ django_project_version }}"
+
+- name: Render template for the init-user-db file
+  template:
+    src: init-user-db.sh.j2
+    owner: "{{ django_user_name }}"
+    group: "{{ django_group_name }}"
+    dest: "{{ django_user_home_dir }}ShowYourHeart/docker/init-user-db.sh"
+
+- name: Render template for the .env file
+  template:
+    src: env.j2
+    owner: "{{ django_user_name }}"
+    group: "{{ django_group_name }}"
+    dest: "{{ django_user_home_dir }}ShowYourHeart/docker/.env"
+
+- name: Bring up the containers
+  command: docker compose up --build -d # noqa: 304
+  become: yes
+  become_user: "{{ django_user_name }}"
+  args:
+    chdir: "{{ django_user_home_dir }}ShowYourHeart/docker"
+  changed_when: false

@@ -1,0 +1,38 @@
+---
+- name: provision
+  hosts: django
+  become: true
+
+  roles:
+    - role: geerlingguy.security
+      tags: [security]
+      when: security_enabled | default(True)
+
+    - role: django
+      tags: [django]
+
+    - role: coopdevs.certbot_nginx
+      vars:
+        domain_name: "{{ inventory_hostname }}"
+        domains: ["{{ inventory_hostname }}"]
+        letsencrypt_email: "{{ certificate_authority_email }}"
+      when:
+        - not development_environment
+        - letsencrypt_enabled | default(True)
+      tags: [nginx]
+
+    - role: jdauphant.nginx
+      when: not development_environment
+      tags: [nginx]
+
+    - role: geerlingguy.firewall
+      when:
+        - firewall_enabled | default(True)
+        - not development_environment
+      tags: [firewall]
+
+    - role: backups
+      when:
+        - backups_role_enabled | default(True)
+        - not development_environment
+      tags: [backup]
