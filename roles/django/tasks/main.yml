@@ -22,6 +22,11 @@
     docker_users:
       - "{{ django_user_name }}"
 
+- name: Remove ShowYourHeart folder
+  ansible.builtin.file:
+    path: "{{ django_user_home_dir }}ShowYourHeart"
+    state: absent
+
 - name: Deploy django project
   become: yes
   become_user: "{{ django_user_name }}"
