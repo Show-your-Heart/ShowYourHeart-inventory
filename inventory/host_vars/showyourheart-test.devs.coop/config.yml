@@ -12,6 +12,12 @@ system_administrators:
   - name: jordi
     ssh_key: "{{ inventory_dir }}/../pub_keys/jordi.pub"
     state: present
+  - name: silvia
+    ssh_key: "{{ inventory_dir }}/../pub_keys/silvia.pub"
+    state: present
+  - name: amoved
+    ssh_key: "{{ inventory_dir }}/../pub_keys/amoved.pub"
+    state: present
 
 developers: []
 
