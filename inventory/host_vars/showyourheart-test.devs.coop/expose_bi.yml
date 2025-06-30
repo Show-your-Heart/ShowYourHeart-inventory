@@ -1,0 +1,26 @@
+bi_db_user: bi
+bi_db_migration_user: migration
+
+bi_db_password: 123456
+bi_db_migration_password: 123456
+
+expose_db_port: 5432
+bi_ip: 78.46.187.140
+
+expose_postgresql_users:
+  - name: "{{ bi_db_user }}"
+    password: "{{ bi_db_password }}"
+    db: "{{db_name}}"
+    objs: "ALL_IN_SCHEMA"
+    privs: "SELECT"
+  - name: "{{ bi_db_migration_user }}"
+    password: "{{ bi_db_migration_password }}"
+    db: "{{db_name}}"
+    objs: "ALL_IN_SCHEMA"
+    privs: "ALL"
+
+
+firewall_additional_rules:
+  - "iptables -A INPUT -p tcp --dport {{ expose_db_port }} -s {{ bi_ip }} -j ACCEPT"
+
+

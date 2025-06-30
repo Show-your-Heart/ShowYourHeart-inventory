@@ -1,0 +1,28 @@
+---
+- name: Create users to access the DB
+  postgresql_user:
+    login_host: "localhost"
+    login_user: "{{ db_user }}"
+    login_password: "{{ db_password }}"
+    db: "{{ item.db }}"
+    port: "{{ expose_postgresql_port | default(omit) }}"
+    name: "{{ item.name }}"
+    password: "{{ item.password }}"
+  loop: "{{ expose_postgresql_users }}"
+  no_log: True
+  when: expose_postgresql_users is defined
+
+- name: GRANT privs for DB user
+  postgresql_privs:
+    login_host: "localhost"
+    login_user: "{{ db_user }}"
+    login_password: "{{ db_password }}"
+    database: "{{ item.db }}"
+    port: "{{ expose_postgresql_port | default(omit) }}"
+    roles: "{{ item.name }}"
+    objs: "{{ item.objs }}"
+    privs: "{{ item.privs }}"
+  loop: "{{ expose_postgresql_users }}"
+  no_log: True
+  when: expose_postgresql_users is defined
+

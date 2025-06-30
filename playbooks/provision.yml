@@ -25,6 +25,10 @@
       when: not development_environment
       tags: [nginx]
 
+    - role: expose-postgresql
+      become_user: postgres
+      tags: [ exposedb ]
+
     - role: geerlingguy.firewall
       when:
         - firewall_enabled | default(True)
