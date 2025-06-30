@@ -18,6 +18,10 @@ system_administrators:
   - name: amoved
     ssh_key: "{{ inventory_dir }}/../pub_keys/amoved.pub"
     state: present
+  - name: angels
+    ssh_key: "{{ inventory_dir }}/../pub_keys/angels.pub"
+    state: present
+
 
 developers: []
 
