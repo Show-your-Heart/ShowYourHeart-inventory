@@ -1,4 +1,24 @@
 ---
+
+- name: Ensure apt cache is up to date
+  become: true
+  become_user: root
+  apt:
+    update_cache: yes
+    cache_valid_time: "{{ 48 * 60 * 60 }}"  # consider the cache to be valid within 48 hours
+
+
+- name: Install the packages postgresql-client & python3-psycopg2
+  become: true
+  become_user: root
+  apt:
+    pkg:
+      - postgresql-client
+      - python3-psycopg2
+    state: present
+
+
+
 - name: Create users to access the DB
   postgresql_user:
     login_host: "localhost"
@@ -9,7 +29,7 @@
     name: "{{ item.name }}"
     password: "{{ item.password }}"
   loop: "{{ expose_postgresql_users }}"
-  no_log: True
+  no_log: false
   when: expose_postgresql_users is defined
 
 - name: GRANT privs for DB user
@@ -23,6 +43,6 @@
     objs: "{{ item.objs }}"
     privs: "{{ item.privs }}"
   loop: "{{ expose_postgresql_users }}"
-  no_log: True
+  no_log: false
   when: expose_postgresql_users is defined
 

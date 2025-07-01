@@ -42,6 +42,14 @@
     group: "{{ django_group_name }}"
     dest: "{{ django_user_home_dir }}ShowYourHeart/docker/init-user-db.sh"
 
+- name: Render template for the docker-compose file
+  template:
+    src: docker-compose.yml.j2
+    owner: "{{ django_user_name }}"
+    group: "{{ django_group_name }}"
+    dest: "{{ django_user_home_dir }}ShowYourHeart/docker/docker-compose.yml"
+
+
 - name: Render template for the .env file
   template:
     src: env.j2
