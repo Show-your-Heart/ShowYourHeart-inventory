@@ -1,8 +1,8 @@
 bi_db_user: bi
 bi_db_migration_user: migration
 
-bi_db_password: 123456
-bi_db_migration_password: 123456
+bi_db_password: AA123456
+bi_db_migration_password: AA123456
 
 expose_db_port: 5432
 bi_ip: 78.46.187.140

@@ -37,4 +37,4 @@ backups_role_enabled: False
 postgresql_python_library: python3-psycopg2
 
 security_enabled: False
-firewall_enabled: False
+firewall_enabled: True

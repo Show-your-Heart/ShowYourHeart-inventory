@@ -1,0 +1,17 @@
+django_debug_var: True
+django_secret_key: adsñfañlkdsfjadsñlkfjañlkfjañlkdsfjqoiwjfañiwoc
+
+# Branch to deploy
+django_project_version: develop
+
+# Postmark SMTP configuration
+django_email_host_user: aaa
+django_email_host_password: bbb
+
+#Default test users
+django_user_admin_email: test@test.com
+django_user_admin_password: A123456
+django_superuser_email: supertest@test.com
+django_superuser_password: A123456
+django_user_gov_admin_email: govtest@test.com
+django_user_gov_admin_password: A123456
