@@ -1,27 +1,8 @@
-version: "3.5"
-
 networks:
   showyourheart-network:
     name: showyourheart-network
 
 services:
-  showyourheart-app:
-    restart: on-failure
-    container_name: showyourheart-app
-    build:
-      context: ..
-      dockerfile: ./docker/Dockerfile
-      target: development
-    env_file: ./.env
-    ports:
-      - "127.0.0.1:1601:8000"
-    volumes:
-      - ../src:/srv
-    depends_on:
-      - showyourheart-db
-    networks:
-      - showyourheart-network
-
   showyourheart-db:
     container_name: showyourheart-db
     image: postgres:14
@@ -33,6 +14,30 @@ services:
     volumes:
       - ../dumps:/dumps
       - ./init-user-db.sh:/docker-entrypoint-initdb.d/init-user-db.sh
+      - db_home:/var/lib/postgresql/data
+    networks:
+      - showyourheart-network
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "showyourheart" ]
+      interval: 5s
+      retries: 20
+    restart: always
+
+  showyourheart-app:
+    restart: always
+    container_name: showyourheart-app
+    build:
+      context: ..
+      dockerfile: ./docker/Dockerfile
+      target: development
+    env_file: ./.env
+    ports:
+      - "127.0.0.1:1601:8000"
+    volumes:
+      - ../src:/srv
+    depends_on:
+      showyourheart-db:
+        condition: service_healthy
     networks:
       - showyourheart-network
 
@@ -41,3 +46,8 @@ services:
     image: selenium/standalone-chrome:4.16.0
     networks:
       - showyourheart-network
+
+
+volumes:
+  db_home:
+    external: false

@@ -46,3 +46,8 @@
   no_log: false
   when: expose_postgresql_users is defined
 
+
+# TODO grant ALL sequences to migration
+# GRANT ALL ON ALL SEQUENCES IN SCHEMA public TO migration
+
+# TODO default permissions for new tables
