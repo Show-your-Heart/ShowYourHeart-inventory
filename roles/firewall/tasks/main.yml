@@ -1,0 +1,15 @@
+- name: Include firewall role
+  include_role:
+    name: geerlingguy.firewall
+
+- name: Modify firewall script to include a docker restart
+  blockinfile:
+    path: /etc/firewall.bash
+    block: |
+      # Restart docker to let it write its own iptables rules.
+      # This script is run both at provisioning and reboot.
+      # Docker daemon also autostarts, but we can't know which of them will be first,
+      # without modifying one of systemd unitfiles installed by vendor roles.
+
+      systemctl restart docker
+
