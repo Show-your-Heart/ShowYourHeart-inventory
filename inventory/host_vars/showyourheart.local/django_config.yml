@@ -2,7 +2,7 @@ django_debug_var: True
 django_secret_key: adsñfañlkdsfjadsñlkfjañlkfjañlkdsfjqoiwjfañiwoc
 
 # Branch to deploy
-django_project_version: test-deploy
+django_project_version: develop
 
 # Postmark SMTP configuration
 django_email_host_user: aaa
