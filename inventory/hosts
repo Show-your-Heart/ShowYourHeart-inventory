@@ -1,3 +1,6 @@
+[prod]
+showyourheart.devs.coop ansible_host=168.119.118.139
+
 [test]
 showyourheart-test.devs.coop ansible_host=162.55.211.247
 
@@ -7,3 +10,4 @@ showyourheart.local
 [django:children]
 dev
 test
+prod

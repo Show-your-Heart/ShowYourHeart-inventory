@@ -60,3 +60,12 @@ There are encrypted variables, so you should use the decrypt ansible password.
 ansible-playbook playbooks/provision.yml -l test --tags=django --ask-vault-pass
 ```
 
+## Production
+In the production environment the sys_admins playbook is already run.  
+For deployment use the tag "django", the rest of the roles wouldn't be necessary to execute.  
+There are encrypted variables, so you should use the decrypt ansible password.
+
+1. Execute Provision
+```bash
+ansible-playbook playbooks/provision.yml -l prod --tags=django --ask-vault-pass
+```
