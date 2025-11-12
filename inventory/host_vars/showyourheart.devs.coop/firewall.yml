@@ -12,5 +12,5 @@ firewall_additional_rules:
   - "iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE"
   - "iptables -A INPUT -p tcp --dport {{ expose_db_port }} -s {{ bi_ip }} -j ACCEPT"
   - "iptables -I DOCKER-USER -p tcp -s 127.0.0.1 --dport {{ expose_db_port }} -j ACCEPT"
-  - "sudo iptables -I DOCKER-USER -p tcp -s {{ bi_ip }} --dport {{ expose_db_port }} -j ACCEPT"
-  - "sudo iptables -I DOCKER-USER -p tcp --dport {{ expose_db_port }} -j DROP"
+  - "iptables -I DOCKER-USER -p tcp -s {{ bi_ip }} --dport {{ expose_db_port }} -j ACCEPT"
+  - "iptables -I DOCKER-USER -p tcp --dport {{ expose_db_port }} -j DROP"
