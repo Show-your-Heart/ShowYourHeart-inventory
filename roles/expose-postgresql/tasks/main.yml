@@ -22,7 +22,7 @@
 - name: Create users to access the DB
   postgresql_user:
     login_host: "localhost"
-    login_user: "{{ db_user }}"
+    login_user: "showyourheart"
     login_password: "{{ db_password }}"
     db: "{{ item.db }}"
     port: "{{ expose_postgresql_port | default(omit) }}"
@@ -31,6 +31,8 @@
   loop: "{{ expose_postgresql_users }}"
   no_log: false
   when: expose_postgresql_users is defined
+  become: true
+  become_user: root
 
 - name: GRANT privs for DB user
   postgresql_privs:
@@ -45,6 +47,8 @@
   loop: "{{ expose_postgresql_users }}"
   no_log: false
   when: expose_postgresql_users is defined
+  become: true
+  become_user: root
 
 
 # TODO grant ALL sequences to migration
