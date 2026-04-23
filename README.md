@@ -65,7 +65,15 @@ In the production environment the sys_admins playbook is already run.
 For deployment use the tag "django", the rest of the roles wouldn't be necessary to execute.  
 There are encrypted variables, so you should use the decrypt ansible password.
 
+### Previous configuration
+Create a file in the base folder of the project named deploy_vars.yml, containing the following variables and fill with your credentials.
+```yml
+ansible_user:
+ansible_become_password:
+```
+It is already included in the gitignore file.
+
 1. Execute Provision
 ```bash
-ansible-playbook playbooks/provision.yml -l prod --tags=django --ask-vault-pass
+ansible-playbook playbooks/provision.yml -l prod --tags=django --ask-vault-pass -e @deploy_vars.yml
 ```
