@@ -39,5 +39,8 @@ nginx_sites:
         proxy_redirect off;
         proxy_pass http://django;
       }
+      location /media/ {
+        alias /srv/media/;
+      }
       gzip_types text/css text/less text/plain text/xml application/xml application/json application/javascript;
       gzip on;
