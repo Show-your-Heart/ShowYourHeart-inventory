@@ -22,6 +22,19 @@ system_administrators:
     ssh_key: "{{ inventory_dir }}/../pub_keys/angels.pub"
     state: present
 
+domains:
+  - ensenyaelcor.org
+  - 1.ensenyaelcor.org
+  - www.ensenyaelcor.org
+  - ensenaelcorazon.org
+  - 1.ensenaelcorazon.org
+  - 2.ensenaelcorazon.org
+  - www.ensenaelcorazon.org
+  - bihotzaerakutsi.org
+  - 1.bihotzaerakutsi.org
+  - www.bihotzaerakutsi.org
+  - ensinaocorazon.org 
+  - www.ensinaocorazon.org
 
 developers: []
 

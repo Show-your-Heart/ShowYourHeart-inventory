@@ -7,6 +7,9 @@ django_user_name: django
 django_group_name: django
 django_user_home_dir: "/home/{{ django_user_name }}/"
 
+# Domains
+domains: "{{ [ inventory_hostname ] }}"
+
 # Nginx configuration
 nginx_configs:
   upstream:
