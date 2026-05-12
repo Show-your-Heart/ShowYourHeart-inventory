@@ -13,8 +13,7 @@
 
     - role: coopdevs.certbot_nginx
       vars:
-        domain_name: "{{ inventory_hostname }}"
-        domains: ["{{ inventory_hostname }}"]
+        domain_name: "{{ domains | default([inventory_hostname]) | join(',') }}"
         letsencrypt_email: "{{ certificate_authority_email }}"
       when:
         - not development_environment
