@@ -43,7 +43,7 @@ nginx_sites:
         proxy_pass http://django;
       }
       location /media/ {
-        alias /srv/media/;
+        alias /home/django/ShowYourHeart/media/;
       }
       gzip_types text/css text/less text/plain text/xml application/xml application/json application/javascript;
       gzip on;
