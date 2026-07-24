@@ -15,3 +15,8 @@ django_superuser_email: supertest@test.com
 django_superuser_password: A123456
 django_user_gov_admin_email: govtest@test.com
 django_user_gov_admin_password: A123456
+
+# Sites configuration
+expected_sites:
+  - ["localhost:1601", "Local"]
+  
