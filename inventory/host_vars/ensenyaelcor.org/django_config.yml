@@ -75,3 +75,11 @@ hetzner_secret_key: !vault |
           3536343262653863380a306532383038383434623732663362373330646262353465363432306164
           39353834663762616566313437353465333732353362343130666332353131396432636365613436
           3830383836306430353838346530323731643766623536336165
+
+# Sites congiguration
+expected_sites:
+  - ["ensenyaelcor.org", "ensenyaelcor"]
+  - ["ensenaelcorazon.org", "ensenaelcorazon"]
+  - ["bihotzaerakutsi.org", "bihotzaerakutsi"]
+  - ["ensinaocorazon.org", "ensinaocorazon"]
+  
