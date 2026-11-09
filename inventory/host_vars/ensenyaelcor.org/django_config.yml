@@ -78,8 +78,12 @@ hetzner_secret_key: !vault |
 
 # Sites congiguration
 expected_sites:
-  - ["ensenyaelcor.org", "ensenyaelcor"]
-  - ["ensenaelcorazon.org", "ensenaelcorazon"]
-  - ["bihotzaerakutsi.org", "bihotzaerakutsi"]
-  - ["ensinaocorazon.org", "ensinaocorazon"]
+  - ["ensenyaelcor.org", "ensenyaelcor.org"]
+  - ["ensenaelcorazon.org", "ensenaelcorazon.org"]
+  - ["bihotzaerakutsi.org", "bihotzaerakutsi.org"]
+  - ["ensinaocorazon.org", "ensinaocorazon.org"]
+  - ["www.ensenyaelcor.org", "www.ensenyaelcor.org"]
+  - ["www.ensenaelcorazon.org", "www.ensenaelcorazon.org"]
+  - ["www.bihotzaerakutsi.org", "www.bihotzaerakutsi.org"]
+  - ["www.ensinaocorazon.org", "www.ensinaocorazon.org"]
   

@@ -78,7 +78,11 @@ hetzner_secret_key: !vault |
 
 # Sites configuration
 expected_sites:
-  - ["test.ensenyaelcor.org", "Test ensenyaelcor"]
-  - ["test.ensenaelcorazon.org", "Test ensenaelcorazon"]
-  - ["test.bihotzaerakutsi.org", "Test bihotzaerakutsi"]
-  - ["test.ensinaocorazon.org", "Test ensinaocorazon"]
+  - ["test.ensenyaelcor.org", "test.ensenyaelcor.org"]
+  - ["test.ensenaelcorazon.org", "test.ensenaelcorazon.org"]
+  - ["test.bihotzaerakutsi.org", "test.bihotzaerakutsi.org"]
+  - ["test.ensinaocorazon.org", "test.ensinaocorazon.or"]
+  - ["www.test.ensenyaelcor.org", "www.test.ensenyaelcor.org"]
+  - ["www.test.ensenaelcorazon.org", "www.test.ensenaelcorazon.org"]
+  - ["www.test.bihotzaerakutsi.org", "www.test.bihotzaerakutsi.org"]
+  - ["www.test.ensinaocorazon.org", "www.test.ensinaocorazon.or"]
