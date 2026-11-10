@@ -81,7 +81,7 @@ expected_sites:
   - ["test.ensenyaelcor.org", "test.ensenyaelcor.org"]
   - ["test.ensenaelcorazon.org", "test.ensenaelcorazon.org"]
   - ["test.bihotzaerakutsi.org", "test.bihotzaerakutsi.org"]
-  - ["test.ensinaocorazon.org", "test.ensinaocorazon.or"]
+  - ["test.ensinaocorazon.org", "test.ensinaocorazon.org"]
   - ["www.test.ensenyaelcor.org", "www.test.ensenyaelcor.org"]
   - ["www.test.ensenaelcorazon.org", "www.test.ensenaelcorazon.org"]
   - ["www.test.bihotzaerakutsi.org", "www.test.bihotzaerakutsi.org"]
