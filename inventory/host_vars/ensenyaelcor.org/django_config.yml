@@ -8,7 +8,7 @@ django_secret_key: !vault |
           3533
 
 # Branch to deploy
-django_project_version: develop
+django_project_version: main
 
 # SMTP configuration
 django_email_host: !vault |
